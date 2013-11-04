@@ -23,19 +23,14 @@ public class Application extends Controller {
     }
 
     public static Result addTodo() throws IOException {
-
-    	MyTodo todo = new MyTodo();
-    	todo.commentaire = "test";
-    	todo.creationDate = new Date();
-    	MyTodo.create(todo);
-    	
-		/*Form<MyTodo> form = Form.form(MyTodo.class).bindFromRequest();
+   	
+		Form<MyTodo> form = Form.form(MyTodo.class).bindFromRequest();
 		MyTodo todo = new MyTodo();
 
 		todo.commentaire = form.field("comment").value();
 		todo.creationDate = new Date();
 ;
-		MyTodo.create(todo);*/
+		MyTodo.create(todo);
 
 		return redirect(routes.Application.showTodolist());
 	}
