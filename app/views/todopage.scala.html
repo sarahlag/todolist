@@ -1,0 +1,34 @@
+@(todolist : List[MyTodo], todoForm: Form[MyTodo])
+@import helper._
+
+@main("Todolist") {
+
+<h1>Les Tweets</h1>
+
+<table class="table table-striped">
+
+	<tr>
+		<td>ID</td>
+		<td>Date</td>
+		<td>Todo</td>
+	</tr>
+
+	@for((todo, i) <- todolist.zipWithIndex.reverse) {
+	<tr>
+		<td>@todo.id</td>
+		<td>@todo.creationDate</td>
+		<td>@todo.commentaire</td>
+	</tr>
+	</tr>
+	}
+</table>
+<p>
+	@helper.form(action = routes.Application.addTodo(), 'class ->
+	"form-horizontal", 'enctype -> "multipart/form-data"){ <label>TODO</label> <input
+		type="text" name="comment" /> 
+		}
+</p>
+
+});
+
+
