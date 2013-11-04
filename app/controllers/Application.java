@@ -22,7 +22,7 @@ public class Application extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
-    public static Result addTodo() throws IOException {
+    public static Result addTodoForm() throws IOException {
    	
 		Form<MyTodo> form = Form.form(MyTodo.class).bindFromRequest();
 		MyTodo todo = new MyTodo();
@@ -30,6 +30,15 @@ public class Application extends Controller {
 		todo.commentaire = form.field("comment").value();
 		todo.creationDate = new Date();
 ;
+		MyTodo.create(todo);
+
+		return redirect(routes.Application.showTodolist());
+	}
+    
+    public static Result addTodo() throws IOException {
+       	
+		MyTodo todo = TodoForm.bindFromRequest().get();
+		todo.creationDate = new Date();
 		MyTodo.create(todo);
 
 		return redirect(routes.Application.showTodolist());
